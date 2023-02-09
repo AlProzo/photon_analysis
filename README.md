@@ -38,4 +38,4 @@ The output will be in output_test.root, run:
 
 `hMgg->Draw()`
 
-`hMgg->Draw("same")`
+`hMggMix->Draw("same")`
