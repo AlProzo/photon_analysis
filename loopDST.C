@@ -82,10 +82,10 @@ Int_t loopDST(
 	TFile* out = new TFile(outfile.Data(),"RECREATE");
 	out->cd();
 
-	//TH1D* hMgg    = new     TH1D("hMgg",   ";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800);
+	// TH1D* hMgg    = new     TH1D("hMgg",   ";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800);
 
 
-  //TH1D* hMggMix = new     TH1D("hMggMix",";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800);
+  // TH1D* hMggMix = new     TH1D("hMggMix",";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800);
 	// HGenericEventMixerObj < TLorentzVector > eventMixer;
 	// eventMixer.setPIDs(1, 1, 7);
 	// eventMixer.setBuffSize(30);
@@ -116,16 +116,16 @@ Int_t loopDST(
 
 
 
-// ======================================================================= //
-// ==================================STEP 1=============================== //
-// ======================================================================= //
+		// ======================================================================= //
+		// ==================================STEP 1=============================== //
+		// ======================================================================= //
 
 
 		// loop over particle candidates in event
 
 
-		// Int_t emcMultiplicity[6][163] = { 0 };
-		//
+		Int_t emcMultiplicity[6][163] = { 0 };
+
 		// for (Int_t j = 0; j < candCat->getEntries(); j++) { // loop over   ParticleCand to see if there is a track match to EMC
 		// 	HParticleCand * cand = HCategoryManager::getObject(cand, candCat, j);
 		// 	if (!cand->isFlagBit(kIsUsed)) continue;
@@ -165,11 +165,11 @@ Int_t loopDST(
 		// 	Double_t trackLength = track.length()/1000; //in meters
 		// 	Double_t beta        = trackLength  / (TMath::C() *time * 1.e-9); // l / ct
 		//
-		// 	if (matchToRpc > 0 ||matchToParticleCand > 0 || beta < 0.7 || beta > 1.3 ||energy<100) continue;  //photon conditions
+		// 	if (matchToRpc > 0 ||matchToParticleCand > 0 || beta < 0.8 || beta > 1.2 ||energy<100) continue;  //photon conditions
 		//
-		// 	TLorentzVector photon;
-		// 	track /= track.length();; //normalize direction vector
+		// 	track /= track.length(); //normalize direction vector
 		// 	track *=  energy; //multiply it by energy to get the momentum vector of a photon
+		// 	TLorentzVector photon;
 		// 	photon.SetXYZM(track.X(), track.Y(), track.Z(), 0);
 		// 	photons.push_back(photon);
 		// } // loop over emc
@@ -205,24 +205,24 @@ Int_t loopDST(
 		// ======================================================================= //
 
 
-	// 	eventMixer.nextEvent();
-	// 	eventMixer.addVector(photons, 1); //add mixing vector into the buffer
-	// 	vector < pair < TLorentzVector, TLorentzVector >>& pairsVec = eventMixer.getMixedVector(); //get mixed-event pairs from the whole buffer
-	//
-	// 	for (Int_t iPair = 0; iPair < pairsVec.size(); iPair++) {
-	// 		pair < TLorentzVector, TLorentzVector >& pair = pairsVec[iPair];
-	// 		TLorentzVector photon1 = pair.first;
-	// 		TLorentzVector photon2 = pair.second;
-	// 		Float_t openingAngle = photon1.Angle(photon2.Vect()) * TMath::RadToDeg();
-	// 		if(openingAngle<6) continue;
-	// 		TLorentzVector pion = photon1+photon2;
-	// 		hMggMix->Fill(pion.M());
-	// 	}
+		// eventMixer.nextEvent();
+		// eventMixer.addVector(photons, 1); //add mixing vector into the buffer
+		// vector < pair < TLorentzVector, TLorentzVector >>& pairsVec = eventMixer.getMixedVector(); //get mixed-event pairs from the whole buffer
+		//
+		// for (Int_t iPair = 0; iPair < pairsVec.size(); iPair++) {
+		// 	pair < TLorentzVector, TLorentzVector >& pair = pairsVec[iPair];
+		// 	TLorentzVector photon1 = pair.first;
+		// 	TLorentzVector photon2 = pair.second;
+		// 	Float_t openingAngle = photon1.Angle(photon2.Vect()) * TMath::RadToDeg();
+		// 	if(openingAngle<6) continue;
+		// 	TLorentzVector pion = photon1+photon2;
+		// 	hMggMix->Fill(pion.M());
+		// }
 
 
 
 
-	
+
 	} // end eventloop
 
 
@@ -238,14 +238,11 @@ Int_t loopDST(
 	// hMggMix->Scale(integralSameEvent/integralMixEvent);
 
 
-	// write your histograms here
 	// out->cd();
 	// hMgg->Write();
 
-
-
-
 	// hMggMix->Write();
+
 	out->cd();
 	out->Save();
 	out->Close();
