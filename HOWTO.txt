@@ -1,6 +1,0 @@
-1.  login  to virgo.hpc.gsi.de
-2.  add your analysis code to loopDST.C (inputfile,outputfile,number of events)
-3.  compile you executable :  make (after callig your defall.sh)
-4.  setup the filelists and directories in sendScript_SL.sh (options for multiple/single files per job)
-5.  change the user part in jobScript_SL.sh if you need a special action
-6.  run  . ./sendScript_SL.sh to send all files in your list to the farm
