@@ -82,13 +82,13 @@ Int_t loopDST(
 	TFile* out = new TFile(outfile.Data(),"RECREATE");
 	out->cd();
 
-	// TH1D* hMgg    = new     TH1D("hMgg",   ";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800);
+	// TH1D* hMgg    = new     TH1D("hMgg",   ";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800);// same event invariant mass
 
 
-  // TH1D* hMggMix = new     TH1D("hMggMix",";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800);
-	// HGenericEventMixerObj < TLorentzVector > eventMixer;
-	// eventMixer.setPIDs(1, 1, 7);
-	// eventMixer.setBuffSize(30);
+  // TH1D* hMggMix = new     TH1D("hMggMix",";M_#gamma#gamma[MeV/c^{2}];Counts",400,0,800); // mixed event invariant mass
+	// HGenericEventMixerObj < TLorentzVector > eventMixer; 
+	// eventMixer.setPIDs(1, 1, 7); // decay of neutral pion (geant id = 7) to two photons (geant id = 1)
+	// eventMixer.setBuffSize(30); // maximum number of events that are used for mixing
 
 	//-------------------------------------------------
 	// event loop starts here
@@ -136,7 +136,7 @@ Int_t loopDST(
 		// 		HEmcCluster * cls    = (HEmcCluster *) emcClusterCat->getObject(emc_index);
 		// 		Int_t sector         = cls->getSector();
 		// 		Int_t cell           = HEmcDetector::getPositionFromCell(cls->getCell()); //cell in format 0-162
-		// 		emcMultiplicity[sector][cell]++;
+		// 		emcMultiplicity[sector][cell]++; //add a track to the particular EMC cell
 		// 	}
 		// } // end cand loop
 
@@ -149,7 +149,7 @@ Int_t loopDST(
 
 
 
-		// vector < TLorentzVector > photons;
+		// vector < TLorentzVector > photons; //vector of all photons in one event
 		//
 		// for (Int_t e = 0; e < emcClusterCat->getEntries(); e++) { // loop over all clusters in emc for finding photons
 		// 	HEmcCluster * cls = (HEmcCluster *) emcClusterCat->getObject(e);
@@ -161,9 +161,9 @@ Int_t loopDST(
 		//
 		// 	Float_t time         = cls->getTime();  //in ns
 		// 	Float_t energy       = cls->getEnergy();//in MeV
-		// 	HGeomVector track(cls->getXLab(), cls->getYLab(), cls->getZLab()-VertexZ); //
+		// 	HGeomVector track(cls->getXLab(), cls->getYLab(), cls->getZLab()-VertexZ); // recalculate track from its position from target
 		// 	Double_t trackLength = track.length()/1000; //in meters
-		// 	Double_t beta        = trackLength  / (TMath::C() *time * 1.e-9); // l / ct
+		// 	Double_t beta        = trackLength  / (TMath::C() *time * 1.e-9); // l / ct - beta calculation from tracklength and time of flight
 		//
 		// 	if (matchToRpc > 0 ||matchToParticleCand > 0 || beta < 0.8 || beta > 1.2 ||energy<100) continue;  //photon conditions
 		//
@@ -205,21 +205,21 @@ Int_t loopDST(
 		// ======================================================================= //
 
 
-		// eventMixer.nextEvent();
-		// eventMixer.addVector(photons, 1); //add mixing vector into the buffer
-		// vector < pair < TLorentzVector, TLorentzVector >>& pairsVec = eventMixer.getMixedVector(); //get mixed-event pairs from the whole buffer
+		// eventMixer.nextEvent(); //declare a new event for event mixer
+		// eventMixer.addVector(photons, 1); //add a current event photon vector into the buffer
+		// vector < pair < TLorentzVector, TLorentzVector >>& pairsVec = eventMixer.getMixedVector(); //get mixed-event pairs from the whole buffer,using current and previous events
 		//
 		// for (Int_t iPair = 0; iPair < pairsVec.size(); iPair++) {
-		// 	pair < TLorentzVector, TLorentzVector >& pair = pairsVec[iPair];
-		// 	TLorentzVector photon1 = pair.first;
-		// 	TLorentzVector photon2 = pair.second;
+		// 	pair < TLorentzVector, TLorentzVector >& pair = pairsVec[iPair]; //unique pair of 2 photons from different events
+		// 	TLorentzVector photon1 = pair.first;  //first photon from event X
+		// 	TLorentzVector photon2 = pair.second;//second photon from event Y
 		// 	Float_t openingAngle = photon1.Angle(photon2.Vect()) * TMath::RadToDeg();
-		// 	if(openingAngle<6) continue;
+		// 	if(openingAngle<6) continue; //same condition as in STEP 3
 		// 	TLorentzVector pion = photon1+photon2;
 		// 	hMggMix->Fill(pion.M());
 		// }
-
-
+		//
+		//
 
 
 
@@ -235,10 +235,10 @@ Int_t loopDST(
 
 	// Double_t integralMixEvent  = hMggMix->Integral(hMggMix->FindBin(210),hMggMix->FindBin(230)); //region outside pi0 peak
 	// Double_t integralSameEvent =    hMgg->Integral(hMggMix->FindBin(210),hMggMix->FindBin(230)); //e.g. 210 - 230 MeV
-	// hMggMix->Scale(integralSameEvent/integralMixEvent);
+	// hMggMix->Scale(integralSameEvent/integralMixEvent);//
 
 
-	// out->cd();
+	 out->cd();
 	// hMgg->Write();
 
 	// hMggMix->Write();
