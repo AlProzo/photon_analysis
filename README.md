@@ -1,5 +1,9 @@
 # Photon Analysis
-This is a minimum working example for neutral pion analysis involving the following:
+This is a minimum working example for neutral pion analysis.
+To run a macro, write in terminal:
+
+ - `make`
+ - `. run.sh`
 
 ## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L120)
 Using ParticleCand loop find all tracks that has a good match with EMC(ECAL)
