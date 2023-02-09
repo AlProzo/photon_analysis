@@ -1,6 +1,6 @@
 # Photon Analysis
 This is a minimum working example for neutral pion analysis.
-To run a macro, login to `virgo.hpc.gsi.de` and download from git:
+To run a macro, login to `virgo-debian10.hpc.gsi.de` and download from git:
 
 `git clone https://github.com/AlProzo/photon_analysis.git `
 
