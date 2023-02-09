@@ -1,4 +1,4 @@
-# photon_analysis
+# Photon Analysis
 This is a minimum working example for neutral pion analysis involving the following:
 
 ## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L120)
