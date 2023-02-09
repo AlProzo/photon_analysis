@@ -22,7 +22,7 @@ Combine any photon pairs into a particle and calculate an invariant mass of this
 and apply cut on minimum opening angle between two photons - it is needed due to the clustering procedure since close tracks are counted as one cluster 
 
 ## [STEP 4](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L204)
-Make a mixed-event pairs using `heventmixer.h` class and apply the same cuts as for same-event pairs
+Make a mixed-event pairs using `heventmixer.h` class and apply the same cuts as for same-event pairs. Uncomment _[line 88-91](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L88)_
 
 ## [STEP 5](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L227)
 Make a background normalization
