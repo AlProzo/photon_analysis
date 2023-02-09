@@ -5,7 +5,7 @@ To run a macro, login to `virgo.hpc.gsi.de` and download from git:
 `git clone https://github.com/AlProzo/photon_analysis.git `
 
 Then, write in terminal:
-
+ - ` . /cvmfs/hadessoft.gsi.de/install/debian10/6.24.02/hydra2-6.3/defall.sh` (latest HYDRA version)
  - `make`
  - `. run.sh`
 
