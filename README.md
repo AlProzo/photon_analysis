@@ -10,7 +10,7 @@ Then, write in terminal:
  - `. run.sh`
 
 ## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L120)
-Using ParticleCand loop find all tracks that has a good match with EMC(ECAL)
+Using ParticleCand loop find all tracks that has a good match with EMC(ECAL) and 
 
 ## [STEP 2](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L147)
 Using `HEmcCluster` select photon candidates with following cuts
@@ -21,12 +21,12 @@ Using `HEmcCluster` select photon candidates with following cuts
 - minimum EMC energy(to reduce noisy background)
 
 ## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L182)
-Combine any photon pairs into a particle and calculate an invariant mass of this particle, put them into histogram (uncomment _[line 85](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L85)_)
+Combine any photon pairs into a particle and calculate an invariant mass of this particle, put them into histogram (uncomment _[line 85](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L85) (histogram declaration)_)
 
-and apply cut on minimum opening angle between two photons - it is needed due to the clustering procedure since close tracks are counted as one cluster 
+and apply cut on minimum opening angle between two photons - _it is needed due to the clustering procedure since close tracks are counted as one cluster_
 
 ## [STEP 4](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L204)
-Make a mixed-event pairs using `heventmixer.h` class and apply the same cuts as for same-event pairs. Uncomment _[line 88-91](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L88)_
+Make a mixed-event pairs using `heventmixer.h` class and apply the same cuts as for same-event pairs.  + Uncomment _[line 88-91](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L88) (event mixer declaration)_
 
 ## [STEP 5](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L232)
 Make a background normalization
