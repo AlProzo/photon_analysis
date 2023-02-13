@@ -9,10 +9,12 @@ Then, write in terminal:
  - `make`
  - `. run.sh`
 
-## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L120)
-Using ParticleCand loop find all tracks that has a good match with EMC(ECAL) and save it in `emcMultiplicity[sectors][cells]`
+## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L157)
+Using ParticleCand loop find all tracks that has a good match with EMC(ECAL)
+and add information about it to the `HEmcCluster`
 
-## [STEP 2](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L147)
+
+## [STEP 2](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L179)
 Using `HEmcCluster` select photon candidates with following cuts
 
 - no match to the RPC detector - charged particle veto
@@ -20,20 +22,20 @@ Using `HEmcCluster` select photon candidates with following cuts
 - beta cut around 1 within 3 sigma resolution ( photons are massles)
 - minimum EMC energy (to reduce noisy background)
 
-## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L182)
+## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#238)
 * Combine any photon pairs into a particle and calculate an invariant mass of this particle, 
 
-* Put them into histogram (uncomment histogram declaration on _[line 85](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L85)_ and writing on _[line 242](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L242)_)
+* Put them into histogram (uncomment histogram declaration on _[line 116](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L116)_ and writing on _[line 324](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L324)_)
 
 * and apply cut on minimum opening angle between two photons - _it is needed due to the clustering procedure since close tracks are counted as one cluster_
 
-## [STEP 4](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L204)
+## [STEP 4](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L264)
 Make a mixed-event pairs using `heventmixer.h` class and apply the same cuts as for same-event pairs.  
 
-+Uncomment _[line 88-91](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L88) (event mixer declaration)_ , 
-_[line 244](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L244) (histogram writing)_
++Uncomment _[line 117-122](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L117) (event mixer declaration)_ , 
+_[line 325](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L325) (histogram writing)_
 
-## [STEP 5](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L232)
+## [STEP 5](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L299)
 Make a background normalization
 
 
