@@ -113,8 +113,8 @@ Int_t loopDST(
 	TH1D * hDiPhotonOpeningAngleMix = new     TH1D("hDiPhotonOpeningAngleMix",
 	                                               "Opening Angle from 2 photons in mixed-event;#alpha_{#gamma#gamma} [deg];Counts", 90, 0, 90);
 
-	// TH1D * hMgg    = new     TH1D("hMgg", ";M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);  // same event invariant mass
-	// TH1D * hMggMix = new     TH1D("hMggMix", ";M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);// same event invariant mass
+	// TH1D * hMgg    = new     TH1D("hMgg", "   ;M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);  //  same event invariant mass
+	// TH1D * hMggMix = new     TH1D("hMggMix", ";M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);  // mixed event invariant mass
 
 
 	// HGenericEventMixerObj < TLorentzVector > eventMixer;
