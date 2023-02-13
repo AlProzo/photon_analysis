@@ -1,1 +1,1 @@
-./analysis /lustre/hades/dst/feb22/gen2test/059/01/root/be2205923194001.hld_dst_feb22.root output_test.root 10000
+./analysis /lustre/hades/dst/feb22/gen2test2/059/05/root/be2205919453905.hld_dst_feb22.root output_test_100k_events.root 100000
