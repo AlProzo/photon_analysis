@@ -161,17 +161,17 @@ Int_t loopDST(
 
 
 		for (Int_t j = 0; j < candCat->getEntries(); j++) {
-				// loop over  ParticleCand to see if there is a track match to EMC
-				HParticleCand * cand = HCategoryManager::getObject(cand, candCat, j);
-				if (!cand->isFlagBit(kIsUsed)) continue;
-				Int_t emc_index = cand->getEmcInd();
-				Float_t emc_mq  = cand->getMetaMatchQualityEmc();
-
-				hEmcMq->Fill(emc_mq);         // check histograms on emc_mq before making a cut
-				if (emc_index >= 0 && emc_mq < 3) { // if there is a match within 3 sigma then the signal is a charged particle
-					HEmcCluster * cls = (HEmcCluster *) emcClusterCat->getObject(emc_index);
-					cls->addMatchedTrack(); // a track has been matched to the particular EMC cluster
-				}
+				// // loop over  ParticleCand to see if there is a track match to EMC
+				// HParticleCand * cand = HCategoryManager::getObject(cand, candCat, j);
+				// if (!cand->isFlagBit(kIsUsed)) continue;
+				// Int_t emc_index = cand->getEmcInd();
+				// Float_t emc_mq  = cand->getMetaMatchQualityEmc();
+        //
+				// hEmcMq->Fill(emc_mq);         // check histograms on emc_mq before making a cut
+				// if (emc_index >= 0 && emc_mq < 3) { // if there is a match within 3 sigma then the signal is a charged particle
+				// 	HEmcCluster * cls = (HEmcCluster *) emcClusterCat->getObject(emc_index);
+				// 	cls->addMatchedTrack(); // a track has been matched to the particular EMC cluster
+				// }
 		}  // end ParticleCand loop
 
 
@@ -189,46 +189,46 @@ Int_t loopDST(
 
 		vector < TLorentzVector > photons; // vector of all photons in one event
 		for (Int_t e = 0; e < emcClusterCat->getEntries(); e++) {  // loop over all clusters in emc for finding photons
-				HEmcCluster * cls = (HEmcCluster *) emcClusterCat->getObject(e);
-
-				Bool_t matchToRpc          = (Bool_t) cls->getNMatchedCells();
-				Bool_t matchToParticleCand = (Bool_t) cls->getNMatchedTracks();
-				// if there is a match to either RPC or track than this is not a neutral particle
-				if (matchToRpc || matchToParticleCand) continue;
-
-				Int_t sector      = cls->getSector();
-				Int_t cell        = emcPositionFromCell[(Int_t)cls->getCell()];// cell in format 0-162
-				// the photon cluster cannot originate in first 2 rows of ECAL(closest to the beam),
-				// there is no acceptance for photons due to RICH/MDC material
-				hEmcClusterCell->Fill(sector*200+cell);
-				if(cell<10) continue;
-
-				Float_t energy = cls->getEnergy();// in MeV
-				Float_t time   = cls->getTime();// in ns
-				HGeomVector track(cls->getXLab() - VertexX, cls->getYLab() - VertexY, cls->getZLab() - VertexZ);
-				// recalculate track from its position from target
-				Double_t trackLength = track.length() / 1000; // in meters
-				Double_t beta        = trackLength / (TMath::C() * time * 1.e-9);
-				// beta = l / ct      --- beta calculation from tracklength and time of flight
-
-				//	Check histograms before making cuts
-				hEmcClusterTrackLength->Fill(track.length());
-				hEmcClusterTime->Fill(time);
-
-				hEmcClusterBeta->Fill(beta);
-				hEmcClusterEnergy->Fill(energy);
-
-				Double_t betaCut = 0.2;                                // symmetric cut value around beta=1
-				if (beta < (1 - betaCut) || beta > (1 + betaCut)) continue; // beta cut to remove slow particles (neutrons, mishits)
-
-				Double_t minEnergyCut = 100.;   // in MeV
-				if (energy < minEnergyCut) continue; // energy cut to remove noisy background
-
-				track /= track.length(); // normalize direction vector -> (n_x, n_y, n_z)
-				track *= energy;   // multiply it by energy to get the momentum vector of a photon : (Px,Py,Pz) =(Ex,Ey,Ez)
-				TLorentzVector photon;
-				photon.SetXYZM(track.X(), track.Y(), track.Z(), 0);
-				photons.push_back(photon);
+				// HEmcCluster * cls = (HEmcCluster *) emcClusterCat->getObject(e);
+        //
+				// Bool_t matchToRpc          = (Bool_t) cls->getNMatchedCells();
+				// Bool_t matchToParticleCand = (Bool_t) cls->getNMatchedTracks();
+				// // if there is a match to either RPC or track than this is not a neutral particle
+				// if (matchToRpc || matchToParticleCand) continue;
+        //
+				// Int_t sector      = cls->getSector();
+				// Int_t cell        = emcPositionFromCell[(Int_t)cls->getCell()];// cell in format 0-162
+				// // the photon cluster cannot originate in first 2 rows of ECAL(closest to the beam),
+				// // there is no acceptance for photons due to RICH/MDC material
+				// hEmcClusterCell->Fill(sector*200+cell);
+				// if(cell<10) continue;
+        //
+				// Float_t energy = cls->getEnergy();// in MeV
+				// Float_t time   = cls->getTime();// in ns
+				// HGeomVector track(cls->getXLab() - VertexX, cls->getYLab() - VertexY, cls->getZLab() - VertexZ);
+				// // recalculate track from its position from target
+				// Double_t trackLength = track.length() / 1000; // in meters
+				// Double_t beta        = trackLength / (TMath::C() * time * 1.e-9);
+				// // beta = l / ct      --- beta calculation from tracklength and time of flight
+        //
+				// //	Check histograms before making cuts
+				// hEmcClusterTrackLength->Fill(track.length());
+				// hEmcClusterTime->Fill(time);
+        //
+				// hEmcClusterBeta->Fill(beta);
+				// hEmcClusterEnergy->Fill(energy);
+        //
+				// Double_t betaCut = 0.2;                                // symmetric cut value around beta=1
+				// if (beta < (1 - betaCut) || beta > (1 + betaCut)) continue; // beta cut to remove slow particles (neutrons, mishits)
+        //
+				// Double_t minEnergyCut = 100.;   // in MeV
+				// if (energy < minEnergyCut) continue; // energy cut to remove noisy background
+        //
+				// track /= track.length(); // normalize direction vector -> (n_x, n_y, n_z)
+				// track *= energy;   // multiply it by energy to get the momentum vector of a photon : (Px,Py,Pz) =(Ex,Ey,Ez)
+				// TLorentzVector photon;
+				// photon.SetXYZM(track.X(), track.Y(), track.Z(), 0);
+				// photons.push_back(photon);
 		}  // loop over emc
 
 
@@ -321,7 +321,7 @@ Int_t loopDST(
 	hDiPhotonOpeningAngle->Write();
 	hDiPhotonOpeningAngleMix->Write();
 
-	hMgg->Write();
+//	hMgg->Write();
 //	hMggMix->Write();
 
 	out->cd();
