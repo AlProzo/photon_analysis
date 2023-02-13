@@ -10,8 +10,8 @@ Then, write in terminal:
  - `. run.sh`
 
 ## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L157)
-		 Using ParticleCand loop find all tracks that has a good match with EMC(ECAL)
-		 and add information about it to the `HEmcCluster`
+Using ParticleCand loop find all tracks that has a good match with EMC(ECAL)
+and add information about it to the `HEmcCluster`
 
 
 ## [STEP 2](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L179)
