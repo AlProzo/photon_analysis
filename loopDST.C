@@ -113,13 +113,13 @@ Int_t loopDST(
 	TH1D * hDiPhotonOpeningAngleMix = new     TH1D("hDiPhotonOpeningAngleMix",
 	                                               "Opening Angle from 2 photons in mixed-event;#alpha_{#gamma#gamma} [deg];Counts", 90, 0, 90);
 
-	TH1D * hMgg    = new     TH1D("hMgg", ";M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);  // same event invariant mass
-	TH1D * hMggMix = new     TH1D("hMggMix", ";M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);// same event invariant mass
+	// TH1D * hMgg    = new     TH1D("hMgg", ";M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);  // same event invariant mass
+	// TH1D * hMggMix = new     TH1D("hMggMix", ";M_{#gamma#gamma}[MeV/c^{2}];Counts", 200, 0, 800);// same event invariant mass
 
 
-	HGenericEventMixerObj < TLorentzVector > eventMixer;
-	eventMixer.setPIDs(1, 1, 7); // decay of neutral pion (geant id = 7) to two photons (geant id = 1)
-	eventMixer.setBuffSize(30); // maximum number of events that are used for mixing
+	// HGenericEventMixerObj < TLorentzVector > eventMixer;
+	// eventMixer.setPIDs(1, 1, 7); // decay of neutral pion (geant id = 7) to two photons (geant id = 1)
+	// eventMixer.setBuffSize(30); // maximum number of events that are used for mixing
 
 	// -------------------------------------------------
 	// event loop starts here
