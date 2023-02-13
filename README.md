@@ -22,7 +22,7 @@ Using `HEmcCluster` select photon candidates with following cuts
 - beta cut around 1 within 3 sigma resolution ( photons are massles)
 - minimum EMC energy (to reduce noisy background)
 
-## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#238)
+## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L238)
 * Combine any photon pairs into a particle and calculate an invariant mass of this particle, 
 
 * Put them into histogram (uncomment histogram declaration on _[line 116](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L116)_ and writing on _[line 324](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L324)_)
