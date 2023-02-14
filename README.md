@@ -7,7 +7,7 @@ To run a macro, login to `virgo-debian10.hpc.gsi.de` and download the project fr
 Then, write in terminal:
  - ` . /cvmfs/hadessoft.gsi.de/install/debian10/6.24.02/hydra2-6.3/defall.sh` (latest HYDRA version)
  - `make`
- - `./analysis   /lustre/hades/dst/feb22/gen2test2/059/05/root/be2205919453905.hld_dst_feb22.root   output_test.root   30000`
+ - `./analysis   /lustre/hades/dst/feb22/gen2test2/059/05/root/be2205919453905.hld_dst_feb22.root output_test.root 30000`
     `./(executable) (input file)  (output file)  (number of events)`
 
 ## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L157)
