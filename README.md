@@ -19,7 +19,7 @@ Using `HEmcCluster` select photon candidates with following cuts
 
 - no match to the RPC detector - charged particle veto
 - no match to any track in HADES
-- beta cut around 1 within 3 sigma resolution ( photons are massles)
+- beta cut around 1 ( photons are massles)
 - minimum EMC energy (to reduce noisy background)
 
 ## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L238)
