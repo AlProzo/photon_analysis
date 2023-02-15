@@ -2,7 +2,9 @@
 This is a minimum working example for neutral pion analysis.
 To run a macro, login to `virgo-debian10.hpc.gsi.de` and download the project from git:
 
-`git clone https://github.com/AlProzo/photon_analysis.git `
+```bash
+git clone https://github.com/AlProzo/photon_analysis.git 
+```
 
 Then, write in terminal:
  - ` . /cvmfs/hadessoft.gsi.de/install/debian10/6.24.02/hydra2-6.2/defall.sh` (HYDRA version)
@@ -26,7 +28,7 @@ Using `HEmcCluster` select photon candidates with following cuts
 ## [STEP 3](loopDST.C#L304)
 * Combine any photon pairs into a particle and calculate an invariant mass of this particle, 
 
-* Put them into histogram (uncomment histogram declaration on _[line 138](loopDST.C#L138)_ and writing on _[line 408](loopDST.C#L408)_)
+* Put them into histogram (uncomment histogram declaration _[line 138](loopDST.C#L138)_ and writing _[line 408](loopDST.C#L408)_)
 
 * and apply cut on minimum opening angle between two photons - _it is needed due to the clustering procedure since close tracks are counted as one cluster_
 
