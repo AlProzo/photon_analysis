@@ -7,7 +7,8 @@ To run a macro, login to `virgo-debian10.hpc.gsi.de` and download the project fr
 Then, write in terminal:
  - ` . /cvmfs/hadessoft.gsi.de/install/debian10/6.24.02/hydra2-6.3/defall.sh` (latest HYDRA version)
  - `make`
- - `. run.sh`
+ - `./analysis   /lustre/hades/dst/feb22/gen2test2/059/05/root/be2205919453905.hld_dst_feb22.root output_test.root 30000`
+    `./(executable) (input file)  (output file)  (number of events)`
 
 ## [STEP 1](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L157)
 Using ParticleCand loop find all tracks that has a good match with EMC(ECAL)
@@ -19,10 +20,10 @@ Using `HEmcCluster` select photon candidates with following cuts
 
 - no match to the RPC detector - charged particle veto
 - no match to any track in HADES
-- beta cut around 1 within 3 sigma resolution ( photons are massles)
+- beta cut around 1 ( photons are massles)
 - minimum EMC energy (to reduce noisy background)
 
-## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#238)
+## [STEP 3](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L238)
 * Combine any photon pairs into a particle and calculate an invariant mass of this particle, 
 
 * Put them into histogram (uncomment histogram declaration on _[line 116](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L116)_ and writing on _[line 324](https://github.com/AlProzo/photon_analysis/blob/main/loopDST.C#L324)_)
